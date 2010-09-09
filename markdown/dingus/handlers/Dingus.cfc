@@ -1,0 +1,2 @@
+<cfcomponent output="false">	<!--- Default Action --->	<cffunction name="index" returntype="void" output="false" hint="My main event">		<cfargument name="event" required="true">		<cfscript>			var rc = event.getCollection();						event.paramValue("markup","");						if( len(rc.markup) ){				rc.html = getMyPlugin("Markdown").toHTML(rc.markup);			}					event.setView("Dingus/index");		</cfscript>	</cffunction><!------------------------------------------- PRIVATE EVENTS ------------------------------------------>
+	</cfcomponent>
