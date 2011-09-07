@@ -41,7 +41,7 @@ link = The link to use for paging, including a placeholder for the page @page@
 ----------------------------------------------------------------------->
 <cfcomponent name="Paging" 
 			 hint="A paging plugin" 
-			 extends="coldbox.system.plugin" 
+			 extends="coldbox.system.Plugin" 
 			 output="false" 
 			 cache="true">
   
@@ -50,14 +50,26 @@ link = The link to use for paging, including a placeholder for the page @page@
     <cffunction name="init" access="public" returntype="Paging" output="false">
 		<cfargument name="controller" type="any" required="true">
 		<cfscript>
-  		super.Init(arguments.controller);
+  		super.init(arguments.controller);
+  		setPluginAuthor("Ortus Solutions");
+  		setPluginAuthorURL("http://www.ortussolutions.com");
   		setpluginName("Paging");
-  		setpluginVersion("1.0");
-  		setpluginDescription("Paging plugin");
+  		setpluginVersion("2.0");
+  		setpluginDescription("Paging plugin for ColdBox");
   		
-  		/* Paging properties */
-  		setPagingMaxRows( getSetting("PagingMaxRows") );
-  		setPagingBandGap( getSetting('PagingBandGap') );
+  		// paging properties with defaults now.
+  		if( settingExists("PagingMaxRows") ){
+  			setPagingMaxRows( getSetting("PagingMaxRows") );
+  		}
+  		else{
+  			setPagingMaxRows( 20 );
+  		}
+  		if( settingExists("PagingBandGap") ){
+  			setPagingBandGap( getSetting('PagingBandGap') );
+  		}
+  		else{
+  			setPagingBandGap( 5 );
+  		}
   		
   		//Return instance
   		return this;
@@ -177,7 +189,7 @@ link = The link to use for paging, including a placeholder for the page @page@
 					</cfif>
 					
 					<!--- NEXT PAGE --->
-					<cfif (currentPage+bandgap) lt totalPages >
+					<cfif currentPage lt totalPages >
 						<a href="#replace(theLink,"@page@",currentPage+1)#">&gt;&gt;</a>
 					</cfif>
 					
@@ -192,6 +204,5 @@ link = The link to use for paging, including a placeholder for the page @page@
 	</cffunction>
     
 <!------------------------------------------- PRIVATE ------------------------------------------->	
-
 	
 </cfcomponent>
