@@ -17,12 +17,20 @@ Modifications:
 ----------------------------------------------------------------------->
 <cfcomponent name="JSON"
 			 hint="JSON Object used to serialize and deserialize JSON data to/from native ColdFusion objects."
-			 output="false">
+			 output="false"
+			 singleton>
 
 <!------------------------------------------- CONSTRUCTOR ------------------------------------------->
 
 	<cffunction name="init" access="public" returntype="JSON" output="false">
 		<cfscript>
+			
+			setpluginName("JSON");
+			setpluginVersion("2.0");
+			setpluginDescription("JSON Plugin is used to serialize and deserialize JSON data to/from native ColdFusion objects");
+			setpluginAuthor("Ortus Solutions");
+			setpluginAuthorURL("http://www.ortussolutions.com");
+			
 			return this;
 		</cfscript>
 	</cffunction>
