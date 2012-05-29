@@ -41,7 +41,7 @@ Modifications:
     <cffunction name="isValidJSON" output="false" access="public" returntype="any" hint="Check if the incoming string is JSON">
 		<cfargument name="str" type="any" required="true"/>
 		<cfscript>
-
+			return isJson( arguments.str );
     	</cfscript>
     </cffunction>
 
